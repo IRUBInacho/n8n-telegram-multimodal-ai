@@ -1,56 +1,76 @@
-**n8n Telegram Multimodal AI Agent**
-Este repositorio contiene un flujo de trabajo avanzado de n8n que implementa un asistente inteligente en Telegram capaz de procesar texto y voz de manera fluida. La arquitectura utiliza un sistema de buffering con Redis para gestionar ráfagas de mensajes y optimizar las llamadas a los modelos de lenguaje (LLM).
+# 🤖 n8n Telegram Multimodal AI Agent
 
-**🚀 Características Principales**
-Entrada Multimodal: El sistema detecta automáticamente si el mensaje es de texto o una nota de voz.
+Flujo de trabajo avanzado en **n8n** que implementa un **asistente inteligente para Telegram**, capaz de procesar **texto y notas de voz** de forma fluida y contextual.
 
-Transcripción Inteligente: Utiliza models/gemini-3-flash-preview para transcribir mensajes de voz con alta precisión.
+El sistema utiliza **Redis como buffer de mensajes**, permitiendo agrupar múltiples inputs del usuario en una sola consulta y optimizar las llamadas a modelos de lenguaje (LLM).
 
-Gestión de Estado (Buffering): Implementa una lógica con Redis y nodos de espera (Wait) para acumular mensajes del usuario y procesarlos como una sola consulta, evitando respuestas fragmentadas.
+---
 
-Agente de IA Potente: Configurado con un nodo de AI Agent que utiliza modelos de Groq (gpt-oss-120b) y Google Gemini para razonar y responder.
+## 🚀 Características
 
-Formateo de Salida: Incluye un nodo de código JavaScript que limpia y adapta el Markdown (títulos y tablas) al formato visual de Telegram para una mejor experiencia de lectura.
+- **Entrada multimodal**: detección automática de texto y audio.
+- **Transcripción de voz** con Google Gemini (`gemini-3-flash-preview`).
+- **Buffering con Redis** para evitar respuestas fragmentadas.
+- **Agente de IA avanzado**:
+  - Groq (`gpt-oss-120b`) para razonamiento ultrarrápido.
+  - Google Gemini como modelo complementario.
+- **Formateo optimizado para Telegram** (Markdown adaptado con JavaScript).
 
-**🛠️ Requisitos Técnicos**
-Para utilizar este flujo, necesitarás las siguientes credenciales y servicios:
+---
 
-n8n: Una instancia activa (Self-hosted o Cloud).
+## 🧩 Extensibilidad (Tools & Memory)
 
-Redis: Una base de datos Redis accesible para el almacenamiento temporal.
+El agente de IA está diseñado para ser **totalmente extensible**, según las necesidades del cliente:
 
-Telegram Bot API: Un token de bot obtenido a través de @BotFather.
+- **Tools personalizadas**:
+  - APIs externas
+  - Bases de datos
+  - Lógica de negocio o validaciones
+- **Memoria configurable**:
+  - Memoria corta (Redis / contexto temporal)
+  - Memoria persistente o semántica (vector stores)
+- Permite escalar desde un bot simple hasta un **asistente empresarial**.
 
-Google Gemini API: Para la transcripción y el modelo de lenguaje.
+---
 
-Groq API: Para la inferencia ultrarrápida del agente.
+## 🛠️ Requisitos
 
-**📦 Instalación**
-Crea un nuevo flujo de trabajo en tu instancia de n8n.
+- **n8n** (Self-hosted o Cloud)
+- **Redis**
+- **Telegram Bot API**
+- **Google Gemini API**
+- **Groq API**
 
-Copia el contenido del archivo telegram-multimodal-ai.json de este repositorio.
+---
 
-Pégalo directamente en el lienzo de n8n.
+## 📦 Instalación
 
-Configura las credenciales correspondientes para cada nodo:
+1. Crea un nuevo workflow en **n8n**.
+2. Copia el contenido de `telegram-multimodal-ai.json`.
+3. Pégalo en el lienzo de n8n.
+4. Configura las credenciales de:
+   - Telegram
+   - Redis
+   - Google Gemini
+   - Groq
 
-Telegram Trigger & Send Message.
+---
 
-Redis Nodes (Redis2, Redis3, Redis4).
+## 🔄 Flujo de Trabajo
 
-Google Gemini & Groq Chat Models.
+1. Recibe mensaje desde Telegram  
+2. Clasifica texto o audio  
+3. Transcribe si es voz  
+4. Guarda y agrupa mensajes en Redis  
+5. Procesa contexto con el agente de IA  
+6. Ajusta formato para Telegram  
+7. Responde al usuario  
 
-**🧩 Lógica del Flujo**
-Recepción: El flujo se activa con un mensaje en Telegram.
+---
 
-Clasificación: Un nodo Switch separa el contenido por tipo (texto/audio).
+## 📌 Casos de Uso
 
-Normalización: El audio se transcribe y se convierte en texto.
-
-Buffering: El mensaje se guarda en Redis y el sistema espera 2 segundos por si llegan más mensajes del mismo usuario.
-
-Procesamiento: El agente de IA analiza el contexto acumulado y genera una respuesta.
-
-Refinado: Un script de JS formatea la respuesta para que luzca profesional en Telegram.
-
-Envío: El bot responde al usuario final.
+- Chatbots avanzados en Telegram, WhatsApp, Facebook, etc.
+- Asistentes de voz, texto, archivos e imagenes.
+- Bots con contexto real y memoria.
+- Optimización de costos LLM mediante batching.
