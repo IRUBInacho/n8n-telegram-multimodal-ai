@@ -1,7 +1,7 @@
-n8n Telegram Multimodal AI Agent
+**n8n Telegram Multimodal AI Agent**
 Este repositorio contiene un flujo de trabajo avanzado de n8n que implementa un asistente inteligente en Telegram capaz de procesar texto y voz de manera fluida. La arquitectura utiliza un sistema de buffering con Redis para gestionar ráfagas de mensajes y optimizar las llamadas a los modelos de lenguaje (LLM).
 
-🚀 Características Principales
+**🚀 Características Principales**
 Entrada Multimodal: El sistema detecta automáticamente si el mensaje es de texto o una nota de voz.
 
 Transcripción Inteligente: Utiliza models/gemini-3-flash-preview para transcribir mensajes de voz con alta precisión.
@@ -12,7 +12,7 @@ Agente de IA Potente: Configurado con un nodo de AI Agent que utiliza modelos de
 
 Formateo de Salida: Incluye un nodo de código JavaScript que limpia y adapta el Markdown (títulos y tablas) al formato visual de Telegram para una mejor experiencia de lectura.
 
-🛠️ Requisitos Técnicos
+**🛠️ Requisitos Técnicos**
 Para utilizar este flujo, necesitarás las siguientes credenciales y servicios:
 
 n8n: Una instancia activa (Self-hosted o Cloud).
@@ -25,7 +25,7 @@ Google Gemini API: Para la transcripción y el modelo de lenguaje.
 
 Groq API: Para la inferencia ultrarrápida del agente.
 
-📦 Instalación
+**📦 Instalación**
 Crea un nuevo flujo de trabajo en tu instancia de n8n.
 
 Copia el contenido del archivo telegram-multimodal-ai.json de este repositorio.
@@ -40,7 +40,7 @@ Redis Nodes (Redis2, Redis3, Redis4).
 
 Google Gemini & Groq Chat Models.
 
-🧩 Lógica del Flujo
+**🧩 Lógica del Flujo**
 Recepción: El flujo se activa con un mensaje en Telegram.
 
 Clasificación: Un nodo Switch separa el contenido por tipo (texto/audio).
